@@ -1,21 +1,25 @@
 function add(a, b) {
     let c = Number(a) + Number(b);
-    console.log(c);
+    result.textContent = c;
+    display.textContent = '';
 }
 
 function subtract(a, b) {
     let c = Number(a)-Number(b);
-    console.log(c);
+    result.textContent = c;
+    display.textContent = '';
 }
 
 function multiply(a,b) {
     let c = Number(a)*Number(b);
-    console.log(c);
+    result.textContent = c;
+    display.textContent = '';
 }
 
 function divide(a,b) {
     let c = Number(a)/Number(b);
-    console.log(c);  //might round down integers, take care of it later
+    result.textContent = c;  //might round down integers, take care of it later
+    display.textContent = '';
 }
 
 function operate(op, a, b) {
@@ -38,16 +42,20 @@ const opToDo = [];
 const ops = document.getElementsByClassName("op");
 const numbers = document.getElementsByClassName("number");
 const equals = document.getElementById("equals");
+const display = document.getElementById("display");
+const result = document.getElementById("result");
 
 for (let i = 0; i < ops.length; i++) {
     ops.item(i).addEventListener('click', () => {
         opToDo.push(ops.item(i).textContent);
+        display.textContent += ops.item(i).textContent;
     });
 }
 
 for (let i = 0; i < numbers.length; i++) {
     numbers.item(i).addEventListener('click', () => {
         opToDo.push(numbers.item(i).textContent);
+        display.textContent += numbers.item(i).textContent;
     });
 }
 
