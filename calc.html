@@ -1,31 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="calc.js" defer></script>
+    <link rel="stylesheet" href="calc.css">
 </head>
+
 <body>
     <div class="vertical-flex">
-        <div id="display"> </div>
-        <div id="result"> </div>
+        <div id="display">[Start typing!]</div>
+        <div id="result">[Result goes here.]</div>
     </div>
-    <button class="op" id="plus">+</button>
-    <button class="op" id="minus">-</button>
-    <button class="op" id="mult">*</button>
-    <button class="op" id="div">/</button>
-    <button id="equals">=</button>
-    <button class="number">1</button>
-    <button class="number">2</button>
-    <button class="number">3</button>
-    <button class="number">4</button>
-    <button class="number">5</button>
-    <button class="number">6</button>
-    <button class="number">7</button>
-    <button class="number">8</button>
-    <button class="number">9</button>
-    <button class="number">0</button>
+    <div class="horizontal-flex">
+        <div class="vertical-flex">
+            <button class="number">1</button>
+            <button class="number">4</button>
+            <button class="number">7</button>
+            <button class="number">.</button>
+        </div>
+        <div class="vertical-flex">
+            <button class="number">2</button>
+            <button class="number">5</button>
+            <button class="number">8</button>
+            <button class="number">0</button>
+        </div>
+        <div class="vertical-flex">
+            <button class="number">3</button>
+            <button class="number">6</button>
+            <button class="number">9</button>
+            <button id="equals">=</button>
+        </div>
+        <div class="vertical-flex">
+            <button class="op" id="plus">+</button>
+            <button class="op" id="minus">-</button>
+            <button class="op" id="mult">*</button>
+            <button class="op" id="div">/</button>
+        </div>
+    </div>
 </body>
+
 </html>

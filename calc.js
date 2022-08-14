@@ -26,7 +26,7 @@ function divide(a,b) {
     return c;
 }
 
-let displayReset = 0;
+let displayReset = 1;
 
 function operate(op, a, b) {
     if (op === '+') {
@@ -97,7 +97,7 @@ function evaluate() {
 
 
         for (let i = 0; i < opToDo.length; i++) {
-            if (isNaN(opToDo[i])) {
+            if (isNaN(opToDo[i]) && opToDo[i] !== '.') {
                 if (flag === 1) {
                     num2 = curr;
                     const newOpToDo = opToDo.slice(i);
