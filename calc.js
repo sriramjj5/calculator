@@ -1,55 +1,12 @@
-function add(a, b) {
-    let c = Number(a) + Number(b);
-    result.textContent = c;
-    display.textContent = '';
-    return c;
-}
-
-function subtract(a, b) {
-    let c = Number(a)-Number(b);
-    result.textContent = c;
-    display.textContent = '';
-    return c;
-}
-
-function multiply(a,b) {
-    let c = Number(a)*Number(b);
-    result.textContent = c;
-    display.textContent = '';
-    return c;
-}
-
-function divide(a,b) {
-    let c = Number(a)/Number(b);
-    result.textContent = c;  //might round down integers, take care of it later
-    display.textContent = '';
-    return c;
-}
-
 let displayReset = 1;
-
-function operate(op, a, b) {
-    if (op === '+') {
-        return add(a, b);
-    }
-    if (op === '-') {
-        return subtract(a, b);
-    }
-    if (op === '*') {
-        return multiply(a, b);
-    }
-    if (op === '/') {
-        return divide(a, b);
-    }
-}
-
 const opToDo = [];
-
 const ops = document.getElementsByClassName("op");
 const numbers = document.getElementsByClassName("number");
 const equals = document.getElementById("equals");
 const display = document.getElementById("display");
 const result = document.getElementById("result");
+
+// adding event (click) listeners to all buttons
 
 for (let i = 0; i < ops.length; i++) {
     ops.item(i).addEventListener('click', () => {
@@ -68,27 +25,45 @@ for (let i = 0; i < numbers.length; i++) {
         if (displayReset == 1) {
             display.textContent = '';
             displayReset = 0;
-            console.log('hi');
         }
         opToDo.push(numbers.item(i).textContent);
         display.textContent += numbers.item(i).textContent;
     });
 }
 
+equals.addEventListener('click', evaluate);
+
+// functions
+
+function operate(op, a, b) {
+    let c = 0;
+    if (op === '+') {
+        c = Number(a) + Number(b);
+    }
+    if (op === '-') {
+        c = Number(a)-Number(b);
+    }
+    if (op === '*') {
+        c = Number(a)*Number(b);
+    }
+    if (op === '/') {
+        c = Number(a)/Number(b);
+    }
+    result.textContent = c;
+    display.textContent = '';
+    return c;
+}
+
 function error() {
     display.textContent = 'ERROR';
 }
 
-
-equals.addEventListener('click', evaluate);
-
 function evaluate() {
-    console.log(opToDo);
-    if (isNaN(opToDo[opToDo.length - 1])) {
+    if (isNaN(opToDo[opToDo.length - 1])) { // if last button entered before = was not a number
         error();
     } else {
 
-        let flag = 0;
+        let flag = 0; // set to 1 if there is more than 1 operator in opToDo
 
         let curr = '';
         let num1 = '';
@@ -97,18 +72,18 @@ function evaluate() {
 
 
         for (let i = 0; i < opToDo.length; i++) {
-            if (isNaN(opToDo[i]) && opToDo[i] !== '.') {
-                if (flag === 1) {
+            if (isNaN(opToDo[i]) && opToDo[i] !== '.') { // if opToDo[i] is a non-'.' operator
+                if (flag === 1) { 
                     num2 = curr;
                     const newOpToDo = opToDo.slice(i);
+                    console.log(operate(op, num1, num2));
                     newOpToDo.unshift(operate(op, num1, num2));
-                    console.log(opToDo.slice(i));
-                    console.log(newOpToDo);
                     opToDo.length = 0;
                     for (let i = 0; i < newOpToDo.length; i++) {
                         opToDo.push(newOpToDo[i]);
                     }
-                    evaluate();
+                    console.log(opToDo);
+                    return evaluate();
                 }
                 flag = 1;
                 op = opToDo[i];
